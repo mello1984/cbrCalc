@@ -1,35 +1,20 @@
 package mello.cbrcalc.dao;
 
-import mello.cbrcalc.utils.HibernateSessionFactoryUtil;
 import mello.cbrcalc.xml.ValRate;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ValRateDAO {
+public class ValRateDAO extends DAO {
 
-    public void saveOrUpdate(ValRate valRate) {
-        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
-        Transaction transaction = session.beginTransaction();
-        session.saveOrUpdate(valRate);
-        transaction.commit();
-        session.close();
+    public void saveOrUpdate(ValRate v) {
+        super.saveOrUpdate(v);
     }
 
-    public void update(ValRate valRate) {
-        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
-        Transaction transaction = session.beginTransaction();
-        session.update(valRate);
-        transaction.commit();
-        session.close();
+    public void update(ValRate v) {
+        super.update(v);
     }
 
-    public void delete(ValRate valRate) {
-        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
-        Transaction transaction = session.beginTransaction();
-        session.delete(valRate);
-        transaction.commit();
-        session.close();
+    public void delete(ValRate v) {
+        super.delete(v);
     }
 }

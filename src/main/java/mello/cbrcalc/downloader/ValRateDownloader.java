@@ -37,7 +37,6 @@ public class ValRateDownloader {
         valRateRoot.prepareItems();
 
         ValRateService service = Main.context.getBean(ValRateService.class);
-        valRateRoot.valutes.forEach(System.out::println);
         valRateRoot.valutes.forEach(service::saveOrUpdate);
     }
 }

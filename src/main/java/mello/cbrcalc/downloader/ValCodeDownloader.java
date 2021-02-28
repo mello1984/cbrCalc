@@ -32,9 +32,9 @@ public class ValCodeDownloader {
             StringReader reader = new StringReader(string);
             JAXBContext context = JAXBContext.newInstance(ValCode.class, ValCodeRoot.class);
             Unmarshaller unmarshaller = context.createUnmarshaller();
-            ValCodeRoot valuteScheme = (ValCodeRoot) unmarshaller.unmarshal(reader);
+            ValCodeRoot root = (ValCodeRoot) unmarshaller.unmarshal(reader);
 
             ValCodeService service = Main.context.getBean(ValCodeService.class);
-            valuteScheme.list.forEach(service::saveOrUpdate);
+            root.list.forEach(service::saveOrUpdate);
     }
 }
