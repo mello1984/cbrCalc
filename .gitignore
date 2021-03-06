@@ -12,3 +12,5 @@ build/
 .gradle/
 
 src/main/java/mello/cbrcalc/Test.java
+
+out/
