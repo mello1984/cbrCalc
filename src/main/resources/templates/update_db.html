@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Update page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<p>Index page: <a href="/">перейти</a></p>
+
+<div>
+    <form action="#" th:action="@{/updateCurrencyDataBase}" method="post">
+        <button type="submit">Update currency base</button>
+    </form>
+    <br>
+    <form action="#" th:action="@{/updateRateDataBase}" method="post">
+        <button type="submit">Update rate base</button>
+    </form>
+</div>
+
+</body>
+</html>

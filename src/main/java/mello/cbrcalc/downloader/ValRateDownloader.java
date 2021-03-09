@@ -1,12 +1,10 @@
 package mello.cbrcalc.downloader;
 
-import mello.cbrcalc.services.ValCodeService;
 import mello.cbrcalc.services.ValRateService;
 import mello.cbrcalc.xml.ValRateRoot;
 import mello.cbrcalc.xml.ValRate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 import javax.xml.bind.JAXBContext;
@@ -20,7 +18,6 @@ import java.nio.charset.Charset;
 
 
 @Component
-@PropertySource("classpath:config.properties")
 public class ValRateDownloader {
     @Autowired
     ValRateService valRateService;

@@ -1,17 +1,19 @@
 package mello.cbrcalc.servingwebcontent;
 
 import lombok.extern.slf4j.Slf4j;
-import mello.cbrcalc.dao.ValCodeDAO;
+import mello.cbrcalc.downloader.ValCodeDownloader;
+import mello.cbrcalc.downloader.ValRateDownloader;
 import mello.cbrcalc.services.ValCodeService;
 import mello.cbrcalc.xml.ValCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import javax.xml.bind.JAXBException;
+import java.io.IOException;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,6 +23,10 @@ import java.util.stream.Collectors;
 public class BaseController {
     @Autowired
     ValCodeService valCodeService;
+    @Autowired
+    ValCodeDownloader valCodeDownloader;
+    @Autowired
+    ValRateDownloader valRateDownloader;
 
     @GetMapping("/")
     public String indexPage(Model model) {
@@ -54,6 +60,35 @@ public class BaseController {
         model.addAttribute("codes", codes);
 
         return "exchange";
+    }
+
+    @GetMapping("/admin")
+    public String adminPage(Model model) {
+        return "update_db";
+    }
+
+    @PostMapping("/updateCurrencyDataBase")
+    public String updateCurrencyDataBaseForm() {
+
+        try {
+            valCodeDownloader.updateCodesTable();
+        } catch (IOException | JAXBException e) {
+            e.printStackTrace();
+        }
+
+        return "update_success";
+    }
+
+    @PostMapping("/updateRateDataBase")
+    public String updateRateDataBaseForm() {
+
+        try {
+            valRateDownloader.updateCodesTable();
+        } catch (IOException | JAXBException e) {
+            e.printStackTrace();
+        }
+
+        return "update_success";
     }
 
 }

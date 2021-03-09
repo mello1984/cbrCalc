@@ -5,7 +5,6 @@ import mello.cbrcalc.xml.ValCode;
 import mello.cbrcalc.xml.ValCodeRoot;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 import javax.xml.bind.JAXBContext;
@@ -18,7 +17,6 @@ import java.net.URL;
 import java.nio.charset.Charset;
 
 @Component
-@PropertySource("classpath:config.properties")
 public class ValCodeDownloader {
     @Autowired
     private ValCodeService valCodeService;
