@@ -1,5 +1,6 @@
 package mello.cbrcalc.servingwebcontent;
 
+import lombok.extern.slf4j.Slf4j;
 import mello.cbrcalc.dao.ValCodeDAO;
 import mello.cbrcalc.services.ValCodeService;
 import mello.cbrcalc.xml.ValCode;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
+@Slf4j
 public class BaseController {
     @Autowired
     ValCodeService valCodeService;

@@ -1,20 +1,23 @@
 package mello.cbrcalc.dao;
 
-import mello.cbrcalc.utils.HibernateSessionFactoryUtil;
 import mello.cbrcalc.xml.ValCode;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
 public class ValCodeDAO extends DAO {
+    @Autowired
+    SessionFactory sessionFactory;
 
     public ValCode findValutaById(String id) {
-        return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(ValCode.class, id);
+        return sessionFactory.openSession().get(ValCode.class, id);
     }
 
     public List<ValCode> getValutaCodes() {
-        return (List<ValCode>) HibernateSessionFactoryUtil.getSessionFactory().openSession().createQuery("from ValCode").list();
+        return (List<ValCode>) sessionFactory.openSession().createQuery("from ValCode").list();
     }
 
     public void saveOrUpdate(ValCode v) {

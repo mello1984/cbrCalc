@@ -1,14 +1,17 @@
 package mello.cbrcalc.dao;
 
-import mello.cbrcalc.utils.HibernateSessionFactoryUtil;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class DAO {
+    @Autowired
+    SessionFactory sessionFactory;
     void save(Object o) {
-        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+        Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         session.save(o);
         transaction.commit();
@@ -16,7 +19,7 @@ public class DAO {
     }
 
     void update(Object o) {
-        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+        Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         session.update(o);
         transaction.commit();
@@ -24,7 +27,7 @@ public class DAO {
     }
 
     void saveOrUpdate(Object o) {
-        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+        Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         session.saveOrUpdate(o);
         transaction.commit();
@@ -32,7 +35,7 @@ public class DAO {
     }
 
     void delete(Object o) {
-        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+        Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         session.delete(o);
         transaction.commit();
