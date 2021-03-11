@@ -1,4 +1,4 @@
-package mello.cbrcalc.xml;
+package mello.cbrcalc.entity;
 
 import lombok.Getter;
 

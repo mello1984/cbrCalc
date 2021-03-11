@@ -1,8 +1,8 @@
 package mello.cbrcalc.downloader;
 
 import mello.cbrcalc.service.ServiceDAO;
-import mello.cbrcalc.xml.ValRateRoot;
-import mello.cbrcalc.xml.ValRate;
+import mello.cbrcalc.entity.ValRateRoot;
+import mello.cbrcalc.entity.ValRate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

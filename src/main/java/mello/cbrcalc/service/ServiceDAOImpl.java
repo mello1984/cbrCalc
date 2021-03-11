@@ -3,8 +3,8 @@ package mello.cbrcalc.service;
 
 import mello.cbrcalc.dao.ValCodeDAO;
 import mello.cbrcalc.dao.ValRateDAO;
-import mello.cbrcalc.xml.ValCode;
-import mello.cbrcalc.xml.ValRate;
+import mello.cbrcalc.entity.ValCode;
+import mello.cbrcalc.entity.ValRate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -1,6 +1,6 @@
 package mello.cbrcalc.dao;
 
-import mello.cbrcalc.xml.ValRate;
+import mello.cbrcalc.entity.ValRate;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +15,8 @@ public class ValRateDAOImpl implements ValRateDAO {
 
     @Override
     public void saveOrUpdate(ValRate v) {
+
+
         sessionFactory.getCurrentSession().saveOrUpdate(v);
     }
 
@@ -26,7 +28,7 @@ public class ValRateDAOImpl implements ValRateDAO {
     @Override
     public ValRate findValRateByIdOnDate(String valutaId, LocalDate ld) {
         Query query = sessionFactory.getCurrentSession()
-                .createQuery("from ValRate where id=:id and date=:date");
+                .createQuery("from ValRate where valuta_id=:id and date=:date");
         query.setParameter("id", valutaId);
         query.setParameter("date", ld);
 
