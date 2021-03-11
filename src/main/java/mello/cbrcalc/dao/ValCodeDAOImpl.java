@@ -1,6 +1,6 @@
 package mello.cbrcalc.dao;
 
-import mello.cbrcalc.xml.ValCode;
+import mello.cbrcalc.entity.ValCode;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

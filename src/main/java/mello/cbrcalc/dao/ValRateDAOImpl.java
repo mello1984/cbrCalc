@@ -1,6 +1,6 @@
 package mello.cbrcalc.dao;
 
-import mello.cbrcalc.xml.ValRate;
+import mello.cbrcalc.entity.ValRate;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +15,8 @@ public class ValRateDAOImpl implements ValRateDAO {
 
     @Override
     public void saveOrUpdate(ValRate v) {
+
+
         sessionFactory.getCurrentSession().saveOrUpdate(v);
     }
 

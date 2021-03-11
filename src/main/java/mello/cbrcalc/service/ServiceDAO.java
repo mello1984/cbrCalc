@@ -1,7 +1,7 @@
 package mello.cbrcalc.service;
 
-import mello.cbrcalc.xml.ValCode;
-import mello.cbrcalc.xml.ValRate;
+import mello.cbrcalc.entity.ValCode;
+import mello.cbrcalc.entity.ValRate;
 
 import java.util.List;
 

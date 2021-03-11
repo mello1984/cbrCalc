@@ -1,6 +1,6 @@
 package mello.cbrcalc.dao;
 
-import mello.cbrcalc.xml.ValCode;
+import mello.cbrcalc.entity.ValCode;
 
 import java.util.List;
 

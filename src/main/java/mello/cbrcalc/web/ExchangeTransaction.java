@@ -4,7 +4,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
-import mello.cbrcalc.xml.ValRate;
+import mello.cbrcalc.entity.ValRate;
 
 @Getter
 @Setter
