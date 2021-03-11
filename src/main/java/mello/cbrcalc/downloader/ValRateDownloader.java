@@ -39,4 +39,5 @@ public class ValRateDownloader {
 
         valRateRoot.valutes.forEach(service::saveOrUpdateValRate);
     }
+    //TODO: дополнение таблицы, а не перезапись
 }

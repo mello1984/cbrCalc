@@ -1,5 +1,7 @@
 package mello.cbrcalc.xml;
 
+import lombok.Getter;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -12,7 +14,10 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "currency_rates")
 @XmlType(name = "ValRate")
+@Getter
 public class ValRate {
+
+
     @Id
     @Column(name = "id")
     @XmlAttribute(name = "ID")

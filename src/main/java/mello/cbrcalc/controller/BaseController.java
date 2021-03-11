@@ -1,14 +1,17 @@
-package mello.cbrcalc.servingwebcontent;
+package mello.cbrcalc.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import mello.cbrcalc.downloader.ValCodeDownloader;
 import mello.cbrcalc.downloader.ValRateDownloader;
 import mello.cbrcalc.service.ServiceDAO;
+import mello.cbrcalc.web.ExchangeTransaction;
 import mello.cbrcalc.xml.ValCode;
+import mello.cbrcalc.xml.ValRate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -56,8 +59,8 @@ public class BaseController {
                 .collect(Collectors.toList());
         model.addAttribute("valCodes", valCodeList);
 
-        List<String> codes = valCodeList.stream().map(ValCode::getIsoCharCode).filter(s -> !s.isEmpty()).sorted().collect(Collectors.toList());
-        model.addAttribute("codes", codes);
+        ExchangeTransaction exchangeTransaction = new ExchangeTransaction();
+        model.addAttribute(exchangeTransaction);
 
         return "exchange";
     }
@@ -89,6 +92,21 @@ public class BaseController {
         }
 
         return "update_success";
+    }
+
+    @PostMapping("/exchangeCurrency")
+    public String exchangeValuta(@ModelAttribute ExchangeTransaction et, Model model) {
+
+        ValRate valRateFrom = service.findValRateById(et.getCurrencyFrom());
+        ValRate valRateTo = service.findValRateById(et.getCurrencyTo());
+        double amountFrom = et.getAmountFrom();
+        double amountTo = amountFrom * valRateFrom.val / valRateFrom.nominal / valRateTo.val * valRateTo.nominal;
+        et.setAmountTo(amountTo);
+        et.setValRateFrom(valRateFrom);
+        et.setValRateTo(valRateTo);
+        model.addAttribute("exchangeTransaction", et);
+
+        return "exchange_success";
     }
 
 }

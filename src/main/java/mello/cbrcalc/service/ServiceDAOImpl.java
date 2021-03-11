@@ -40,4 +40,9 @@ public class ServiceDAOImpl implements ServiceDAO {
         valRateDAO.saveOrUpdate(v);
     }
 
+    @Override
+    public ValRate findValRateById(String id) {
+        return valRateDAO.findValRateById( id);
+    }
+
 }

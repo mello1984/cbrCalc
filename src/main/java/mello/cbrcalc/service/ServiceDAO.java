@@ -13,4 +13,6 @@ public interface ServiceDAO {
     List<ValCode> getValutaCodes();
 
     void saveOrUpdateValCode(ValCode valuta);
+
+    ValRate findValRateById(String id);
 }

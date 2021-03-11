@@ -21,7 +21,6 @@ public class HibernateConf {
         sessionFactory.setDataSource(dataSource());
         sessionFactory.setPackagesToScan("mello.cbrcalc");
         sessionFactory.setHibernateProperties(hibernateProperties());
-
         return sessionFactory;
     }
 
@@ -42,13 +41,12 @@ public class HibernateConf {
         return transactionManager;
     }
 
-    private final Properties hibernateProperties() {
+    private Properties hibernateProperties() {
         Properties hibernateProperties = new Properties();
         hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "update");
         hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQL10Dialect");
         hibernateProperties.setProperty("hibernate.show_sql", "true");
         hibernateProperties.setProperty("hibernate.format_sql", "true");
-
         return hibernateProperties;
     }
 }
