@@ -3,6 +3,7 @@ package mello.cbrcalc.springmvcdemo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -12,7 +13,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 
 @Configuration
-@EnableAutoConfiguration
+@EnableAutoConfiguration(exclude = HibernateJpaAutoConfiguration.class)
 @ComponentScan("mello.cbrcalc")
 @Slf4j
 @EnableWebMvc

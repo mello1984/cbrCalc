@@ -1,6 +1,6 @@
 package mello.cbrcalc.downloader;
 
-import mello.cbrcalc.services.ValCodeService;
+import mello.cbrcalc.service.ServiceDAO;
 import mello.cbrcalc.xml.ValCode;
 import mello.cbrcalc.xml.ValCodeRoot;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ import java.nio.charset.Charset;
 @Component
 public class ValCodeDownloader {
     @Autowired
-    private ValCodeService valCodeService;
+    private ServiceDAO service;
 
     @Value("${currency_catalog_url}")
     private String currency_catalog_url;
@@ -35,6 +35,6 @@ public class ValCodeDownloader {
         Unmarshaller unmarshaller = context.createUnmarshaller();
         ValCodeRoot root = (ValCodeRoot) unmarshaller.unmarshal(reader);
 
-        root.list.forEach(valCodeService::saveOrUpdate);
+        root.list.forEach(service::saveOrUpdateValCode);
     }
 }

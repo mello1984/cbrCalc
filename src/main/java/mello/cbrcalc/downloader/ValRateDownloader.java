@@ -1,6 +1,6 @@
 package mello.cbrcalc.downloader;
 
-import mello.cbrcalc.services.ValRateService;
+import mello.cbrcalc.service.ServiceDAO;
 import mello.cbrcalc.xml.ValRateRoot;
 import mello.cbrcalc.xml.ValRate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ import java.nio.charset.Charset;
 @Component
 public class ValRateDownloader {
     @Autowired
-    ValRateService valRateService;
+    ServiceDAO service;
 
     @Value("${daily_url}")
     private String daily_url;
@@ -37,6 +37,6 @@ public class ValRateDownloader {
         ValRateRoot valRateRoot = (ValRateRoot) unmarshaller.unmarshal(reader);
         valRateRoot.prepareItems();
 
-        valRateRoot.valutes.forEach(valRateService::saveOrUpdate);
+        valRateRoot.valutes.forEach(service::saveOrUpdateValRate);
     }
 }

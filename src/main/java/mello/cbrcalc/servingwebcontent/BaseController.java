@@ -3,7 +3,7 @@ package mello.cbrcalc.servingwebcontent;
 import lombok.extern.slf4j.Slf4j;
 import mello.cbrcalc.downloader.ValCodeDownloader;
 import mello.cbrcalc.downloader.ValRateDownloader;
-import mello.cbrcalc.services.ValCodeService;
+import mello.cbrcalc.service.ServiceDAO;
 import mello.cbrcalc.xml.ValCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 @Slf4j
 public class BaseController {
     @Autowired
-    ValCodeService valCodeService;
+    ServiceDAO service;
     @Autowired
     ValCodeDownloader valCodeDownloader;
     @Autowired
@@ -36,20 +36,20 @@ public class BaseController {
     @GetMapping("/greeting")
     public String greeting(@RequestParam(name = "name", required = false, defaultValue = "World") String name, Model model) {
         model.addAttribute("name", name);
-        model.addAttribute("test_attr", valCodeService.findValutaById("R01100").toString());
+        model.addAttribute("test_attr", service.findValutaById("R01100").toString());
         return "greeting";
     }
 
     @GetMapping("/val_code")
     public String valCodePage(Model model) {
-        List<ValCode> valCodeList = valCodeService.getValutaCodes();
+        List<ValCode> valCodeList = service.getValutaCodes();
         model.addAttribute("valCodeList", valCodeList);
         return "val_code";
     }
 
     @GetMapping("/exchange")
     public String exchangePage(Model model) {
-        List<ValCode> valCodeList = valCodeService.getValutaCodes();
+        List<ValCode> valCodeList = service.getValutaCodes();
         valCodeList = valCodeList.stream()
                 .filter(v -> !v.getIsoCharCode().isEmpty())
                 .sorted(Comparator.comparing(ValCode::getIsoCharCode))
