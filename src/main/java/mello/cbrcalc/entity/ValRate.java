@@ -14,13 +14,6 @@ import java.time.LocalDate;
 @Getter
 @IdClass(ValRatePK.class)
 public class ValRate {
-
-
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @Column(name ="id")
-//    int id;
-
     @Id
     @Column(name = "val_id")
     @XmlAttribute(name = "ID")

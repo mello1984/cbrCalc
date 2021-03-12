@@ -1,4 +1,4 @@
-package mello.cbrcalc.springmvcdemo;
+package mello.cbrcalc.application;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
@@ -18,10 +18,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Slf4j
 @EnableWebMvc
 @PropertySource("classpath:config.properties")
-public class SpringMvcDemoApplication implements WebMvcConfigurer {
+public class CbrCalcSpringMvcApplication implements WebMvcConfigurer {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringMvcDemoApplication.class, args);
+        SpringApplication.run(CbrCalcSpringMvcApplication.class, args);
     }
 
     @Override
