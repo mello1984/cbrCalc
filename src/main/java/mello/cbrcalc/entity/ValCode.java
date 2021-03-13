@@ -1,4 +1,6 @@
-package mello.cbrcalc.xml;
+package mello.cbrcalc.entity;
+
+import lombok.Getter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +13,7 @@ import javax.xml.bind.annotation.XmlType;
 @Entity
 @Table(name = "valuta_codes")
 @XmlType(name = "Item")
+@Getter
 public class ValCode {
     @XmlAttribute(name = "ID")
     @Id
@@ -35,4 +38,16 @@ public class ValCode {
     @Column(name = "iso_char_code")
     String isoCharCode;
 
+    @Override
+    public String toString() {
+        return "ValCode{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", engName='" + engName + '\'' +
+                ", nominal=" + nominal +
+                ", parentCode='" + parentCode + '\'' +
+                ", isoNumCode=" + isoNumCode +
+                ", isoCharCode='" + isoCharCode + '\'' +
+                '}';
+    }
 }

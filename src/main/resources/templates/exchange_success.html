@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Update page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<p>Index page: <a href="/">перейти</a></p>
+
+<strong>Exchange successful</strong>
+<br><br>
+
+From currency: <span th:text="${exchangeTransaction.valRateFrom.name}"></span>
+<br>
+Amount: <span th:text="${exchangeTransaction.amountFrom}"></span>
+<br><br>
+To currency: <span th:text="${exchangeTransaction.valRateTo.name}"></span>
+<br>
+Amount: <span th:text="${exchangeTransaction.amountTo}"></span>
+</body>
+</html>

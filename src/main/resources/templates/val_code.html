@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+
+<p>Index page: <a href="/">перейти</a></p>
+
+<table th:border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>EngName</th>
+        <th>Nominal</th>
+        <th>ISO CHAR CODE</th>
+        <th>ISO NUM CODE</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${valCodeList.isEmpty()}">
+        <td colspan="6"> No Data Available</td>
+    </tr>
+    <tr th:each="vc : ${valCodeList}">
+        <td><span th:text="${vc.getId()}"></span></td>
+        <td><span th:text="${vc.getName()}"></span></td>
+        <td><span th:text="${vc.getEngName()}"></span></td>
+        <td><span th:text="${vc.getNominal()}"></span></td>
+        <td><span th:text="${vc.getIsoCharCode()}"></span></td>
+        <td><span th:text="${vc.getIsoNumCode()}"></span></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
