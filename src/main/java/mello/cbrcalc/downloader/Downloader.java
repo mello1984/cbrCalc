@@ -10,9 +10,9 @@ import java.nio.charset.Charset;
 
 @Component
 public class Downloader {
-    @Value("${currency_catalog_url}")
+    @Value("${cbr_calc.currency_catalog_url}")
     private String currency_catalog_url;
-    @Value("${daily_url}")
+    @Value("${cbr_calc.daily_url}")
     private String daily_url;
 
     String getXmlString(String url_string) throws IOException {

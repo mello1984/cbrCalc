@@ -1,23 +1,16 @@
-package mello.cbrcalc.application;
+package mello.cbrcalc;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 
-@Configuration
-@EnableAutoConfiguration(exclude = HibernateJpaAutoConfiguration.class)
-@ComponentScan("mello.cbrcalc")
+@SpringBootApplication(scanBasePackages = "mello.cbrcalc")
 @Slf4j
 @EnableWebMvc
-@PropertySource("classpath:config.properties")
 public class CbrCalcSpringMvcApplication implements WebMvcConfigurer {
 
     public static void main(String[] args) {

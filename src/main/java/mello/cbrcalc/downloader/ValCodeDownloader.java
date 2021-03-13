@@ -21,7 +21,7 @@ public class ValCodeDownloader {
     @Autowired
     private ServiceDAO service;
 
-    @Value("${currency_catalog_url}")
+    @Value("${cbr_calc.currency_catalog_url}")
     private String currency_catalog_url;
 
     public void updateCodesTable() throws IOException, JAXBException {

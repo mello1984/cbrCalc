@@ -22,7 +22,7 @@ public class ValRateDownloader {
     @Autowired
     ServiceDAO service;
 
-    @Value("${daily_url}")
+    @Value("${cbr_calc.daily_url}")
     private String daily_url;
 
     public void updateCodesTable() throws IOException, JAXBException {

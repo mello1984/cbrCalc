@@ -17,7 +17,7 @@ public class ValRate {
     @Id
     @Column(name = "val_id")
     @XmlAttribute(name = "ID")
-    String valuta_id;
+    String valutaId;
 
     @Id
     @Column(name = "date")

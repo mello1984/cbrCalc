@@ -9,6 +9,6 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @EqualsAndHashCode
 public class ValRatePK implements Serializable {
-    String valuta_id;
+    String valutaId;
     LocalDate date;
 }
