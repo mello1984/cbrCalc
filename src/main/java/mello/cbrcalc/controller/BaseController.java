@@ -1,8 +1,5 @@
 package mello.cbrcalc.controller;
 
-import lombok.extern.slf4j.Slf4j;
-import mello.cbrcalc.downloader.ValCodeDownloader;
-import mello.cbrcalc.downloader.ValRateDownloader;
 import mello.cbrcalc.service.ServiceDAO;
 import mello.cbrcalc.web.ExchangeTransaction;
 import mello.cbrcalc.entity.ValCode;
@@ -15,21 +12,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.xml.bind.JAXBException;
-import java.io.IOException;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
-@Slf4j
 public class BaseController {
     @Autowired
     ServiceDAO service;
-    @Autowired
-    ValCodeDownloader valCodeDownloader;
-    @Autowired
-    ValRateDownloader valRateDownloader;
 
     @GetMapping("/")
     public String indexPage(Model model) {
@@ -70,29 +60,6 @@ public class BaseController {
         return "update_db";
     }
 
-    @PostMapping("/updateCurrencyDataBase")
-    public String updateCurrencyDataBaseForm() {
-
-        try {
-            valCodeDownloader.updateCodesTable();
-        } catch (IOException | JAXBException e) {
-            e.printStackTrace();
-        }
-
-        return "update_success";
-    }
-
-    @PostMapping("/updateRateDataBase")
-    public String updateRateDataBaseForm() {
-
-        try {
-            valRateDownloader.updateCodesTable();
-        } catch (IOException | JAXBException e) {
-            e.printStackTrace();
-        }
-
-        return "update_success";
-    }
 
     @PostMapping("/exchangeCurrency")
     public String exchangeValuta(@ModelAttribute ExchangeTransaction et, Model model) {

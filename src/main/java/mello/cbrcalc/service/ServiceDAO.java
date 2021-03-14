@@ -15,4 +15,8 @@ public interface ServiceDAO {
     void saveOrUpdateValCode(ValCode valuta);
 
     ValRate findValRateById(String id);
+
+    boolean updateRateDB();
+
+    boolean updateCodeDB();
 }
