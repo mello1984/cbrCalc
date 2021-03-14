@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 public class BaseController {
@@ -40,19 +38,30 @@ public class BaseController {
         return "val_code";
     }
 
+    //    @GetMapping("/exchange")
+//    public String exchangePage(Model model) {
+//        List<ValCode> valCodeList = service.getValutaCodes();
+//        valCodeList = valCodeList.stream()
+//                .filter(v -> !v.getIsoCharCode().isEmpty())
+//                .sorted(Comparator.comparing(ValCode::getIsoCharCode))
+//                .collect(Collectors.toList());
+//        model.addAttribute("valCodes", valCodeList);
+//
+//        ExchangeTransaction exchangeTransaction = new ExchangeTransaction();
+//        model.addAttribute(exchangeTransaction);
+//
+//        return "exchange";
+//    }
     @GetMapping("/exchange")
-    public String exchangePage(Model model) {
-        List<ValCode> valCodeList = service.getValutaCodes();
-        valCodeList = valCodeList.stream()
-                .filter(v -> !v.getIsoCharCode().isEmpty())
-                .sorted(Comparator.comparing(ValCode::getIsoCharCode))
-                .collect(Collectors.toList());
-        model.addAttribute("valCodes", valCodeList);
+    public String exchangePage2(Model model) {
+
+        List<String> charCodeList = service.getCharCodeList();
+        model.addAttribute("charCodes", charCodeList);
 
         ExchangeTransaction exchangeTransaction = new ExchangeTransaction();
         model.addAttribute(exchangeTransaction);
 
-        return "exchange";
+        return "exchange2";
     }
 
     @GetMapping("/admin")

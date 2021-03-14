@@ -21,11 +21,17 @@ public class UpdateDbController {
         return result ? "Update successful" : "Update failed";
     }
 
+    @PostMapping("/updateCurrencyDailyDataBase")
+    public String updateDailyRateCodeDB() {
+
+        boolean result = service.updateCodeDailyDB();
+        return result ? "Update successful" : "Update failed";
+    }
+
     @PostMapping("/updateRateDataBase")
     public String updateRateDB() {
         boolean result = service.updateRateDB();
         return result ? "Update successful" : "Update failed";
-
     }
 
 }

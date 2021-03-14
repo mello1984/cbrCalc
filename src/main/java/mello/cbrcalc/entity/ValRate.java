@@ -1,7 +1,10 @@
 package mello.cbrcalc.entity;
 
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
+import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -10,20 +13,14 @@ import javax.xml.bind.annotation.XmlType;
 import java.time.LocalDate;
 
 @Entity
-//@Table(name = "valuta_rates2", uniqueConstraints = {@UniqueConstraint(columnNames = {"val_id", "date"})})
 @Table(name = "valuta_rates")
+@IdClass(ValRatePK.class)
 @XmlType(name = "ValRate")
 @Getter
-@IdClass(ValRatePK.class)
+@Setter
 @ToString
-
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class ValRate {
-
-//    @Id
-//    @Column(name = "id")
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    int id;
-
     @Id
     @Column(name = "val_id")
     @XmlAttribute(name = "ID")
@@ -51,7 +48,6 @@ public class ValRate {
 
     @XmlElement(name = "Value")
     String value;
-
 
     @Column(name = "val")
     double val;

@@ -25,8 +25,8 @@ public class ValRateRoot {
     public void prepareItems() {
         LocalDate localDate = getDate();
         valutes.forEach(v -> {
-            v.date = localDate;
-            v.val = Double.parseDouble(v.value.replace(",", "."));
+            v.setDate(localDate);
+            v.setVal( Double.parseDouble(v.getValue().replace(",", ".")));
         });
     }
 
