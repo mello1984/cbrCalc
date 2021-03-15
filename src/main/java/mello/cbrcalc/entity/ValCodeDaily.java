@@ -10,13 +10,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 
 @Entity
 @Table(name = "valuta_daily_codes")
 @XmlType(name = "Item")
+@XmlAccessorType(XmlAccessType.NONE)
 @Getter
 @ToString
 @EqualsAndHashCode

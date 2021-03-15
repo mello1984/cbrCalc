@@ -7,15 +7,14 @@ import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "valuta_rates")
 @IdClass(ValRatePK.class)
 @XmlType(name = "ValRate")
+@XmlAccessorType(XmlAccessType.NONE)
 @Getter
 @Setter
 @ToString

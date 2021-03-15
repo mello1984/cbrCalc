@@ -14,13 +14,6 @@ public class UpdateDbController {
     @Autowired
     private RestTemplate restTemplate;
 
-    @PostMapping("/updateCurrencyDataBase")
-    public String updateRateCodeDB() {
-
-        boolean result = service.updateCodeDB();
-        return result ? "Update successful" : "Update failed";
-    }
-
     @PostMapping("/updateCurrencyDailyDataBase")
     public String updateDailyRateCodeDB() {
 

@@ -2,7 +2,6 @@ package mello.cbrcalc.service;
 
 
 import mello.cbrcalc.dao.ValCodeDailyRepository;
-import mello.cbrcalc.dao.ValCodeRepository;
 import mello.cbrcalc.dao.ValRateRepository;
 import mello.cbrcalc.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +20,6 @@ public class ServiceDAOImpl implements ServiceDAO {
     @Autowired
     private ValCodeDailyRepository valCodeDailyRepository;
     @Autowired
-    private ValCodeRepository valCodeRepository;
-    @Autowired
     private ValRateRepository valRateRepository;
     @Autowired
     RestTemplate restTemplate;
@@ -35,18 +32,13 @@ public class ServiceDAOImpl implements ServiceDAO {
     private String daily_url;
 
     @Override
-    public ValCode findValutaById(String id) {
-        return valCodeRepository.findById(id).get();
+    public ValCodeDaily findValCodeDailyById(String id) {
+        return valCodeDailyRepository.findById(id).get();
     }
 
     @Override
-    public List<ValCode> getValutaCodes() {
-        return valCodeRepository.findAll();
-    }
-
-    @Override
-    public void saveOrUpdateValCode(ValCode v) {
-        valCodeRepository.save(v);
+    public List<ValCodeDaily> getValCodeDailys() {
+        return valCodeDailyRepository.findAll();
     }
 
     @Override
@@ -90,20 +82,6 @@ public class ServiceDAOImpl implements ServiceDAO {
         return response.hasBody();
     }
 
-    @Override
-    public boolean updateCodeDB() {
-        ResponseEntity<ValCodeRoot> response = restTemplate.exchange(
-                currency_catalog_url,
-                HttpMethod.GET,
-                null,
-                new ParameterizedTypeReference<>() {
-                });
-
-        if (response.hasBody()) {
-            response.getBody().list.forEach(this::saveOrUpdateValCode);
-        }
-        return response.hasBody();
-    }
     @Override
     public boolean updateCodeDailyDB() {
         ResponseEntity<ValCodeDailyRoot> response = restTemplate.exchange(

@@ -1,8 +1,8 @@
 package mello.cbrcalc.controller;
 
+import mello.cbrcalc.entity.ValCodeDaily;
 import mello.cbrcalc.service.ServiceDAO;
 import mello.cbrcalc.web.ExchangeTransaction;
-import mello.cbrcalc.entity.ValCode;
 import mello.cbrcalc.entity.ValRate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,34 +24,14 @@ public class BaseController {
         return "index";
     }
 
-    @GetMapping("/greeting")
-    public String greeting(@RequestParam(name = "name", required = false, defaultValue = "World") String name, Model model) {
-        model.addAttribute("name", name);
-        model.addAttribute("test_attr", service.findValutaById("R01100").toString());
-        return "greeting";
-    }
-
-    @GetMapping("/val_code")
+     @GetMapping("/val_code")
     public String valCodePage(Model model) {
-        List<ValCode> valCodeList = service.getValutaCodes();
+        List<ValCodeDaily> valCodeList = service.getValCodeDailys();
         model.addAttribute("valCodeList", valCodeList);
         return "val_code";
     }
 
-    //    @GetMapping("/exchange")
-//    public String exchangePage(Model model) {
-//        List<ValCode> valCodeList = service.getValutaCodes();
-//        valCodeList = valCodeList.stream()
-//                .filter(v -> !v.getIsoCharCode().isEmpty())
-//                .sorted(Comparator.comparing(ValCode::getIsoCharCode))
-//                .collect(Collectors.toList());
-//        model.addAttribute("valCodes", valCodeList);
-//
-//        ExchangeTransaction exchangeTransaction = new ExchangeTransaction();
-//        model.addAttribute(exchangeTransaction);
-//
-//        return "exchange";
-//    }
+
     @GetMapping("/exchange")
     public String exchangePage2(Model model) {
 

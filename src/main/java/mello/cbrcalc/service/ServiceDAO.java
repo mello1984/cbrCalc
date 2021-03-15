@@ -1,6 +1,5 @@
 package mello.cbrcalc.service;
 
-import mello.cbrcalc.entity.ValCode;
 import mello.cbrcalc.entity.ValCodeDaily;
 import mello.cbrcalc.entity.ValRate;
 
@@ -11,17 +10,15 @@ public interface ServiceDAO {
 
     void saveOrUpdateValRate(ValRate valRate);
 
-    ValCode findValutaById(String id);
+    ValCodeDaily findValCodeDailyById(String id);
 
-    List<ValCode> getValutaCodes();
+    List<ValCodeDaily> getValCodeDailys();
 
-    void saveOrUpdateValCode(ValCode valuta);
 
     ValRate findValRateById(String id);
 
     boolean updateRateDB();
 
-    boolean updateCodeDB();
 
     boolean updateCodeDailyDB();
 
