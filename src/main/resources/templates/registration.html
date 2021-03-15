@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Update page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<p>Index page: <a href="/">перейти</a></p>
+
+<div>
+    <form action="#" th:action="@{/registration}" method="post" th:object="${userForm}">
+        <label>Username: </label><input type="text" th:field="*{username}"><br>
+        <label>Password: </label><input type="password" th:field="*{password}"><br>
+        <label>Password confirm: </label><input type="password" th:field="*{passwordConfirm}">
+        <button type="submit">Зарегистрироваться</button>
+    </form>
+</div>
+
+</body>
+</html>
+
+
+<!--<div>-->
+<!--    <form action="#" th:action="@{/updateCurrencyDailyDataBase}" method="post">-->
+<!--        <button type="submit">Update currency daily base</button>-->
+<!--    </form>-->
+<!--    <br>-->
+<!--    <form action="#" th:action="@{/updateRateDataBase}" method="post">-->
+<!--        <button type="submit">Update rate base</button>-->
+<!--    </form>-->
+<!--</div>-->

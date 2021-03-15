@@ -1,5 +1,6 @@
 package mello.cbrcalc.controller;
 
+import mello.cbrcalc.entity.User;
 import mello.cbrcalc.entity.ValCodeDaily;
 import mello.cbrcalc.service.ServiceDAO;
 import mello.cbrcalc.web.ExchangeTransaction;
@@ -23,6 +24,8 @@ public class BaseController {
     public String indexPage(Model model) {
         return "index";
     }
+
+
 
      @GetMapping("/val_code")
     public String valCodePage(Model model) {

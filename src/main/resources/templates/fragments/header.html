@@ -1,0 +1,29 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.springframework.org/security/tags" lang="en">
+<!--      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" lang="en">-->
+<!--      xmlns:sec="http://www.springframework.org/security/tags">-->
+
+<!--<head>-->
+<!--    <div th:fragment="header-css">-->
+<!--        <link th:href="@{/css/main.css}" rel="stylesheet">-->
+<!--    </div>-->
+<!--</head>-->
+
+<body>
+<sec:authorize access="isAuthenticated()">
+<div th:fragment="header">
+
+<!--    <span sec:authorize="isAuthenticated()">-->
+        <a th:href="@{/}">Home</a> |
+<!--        Logged user: <span sec:authentication="name"></span> |-->
+<!--        Roles: <span sec:authentication="principal.authorities"></span> |-->
+        <a th:href="@{/logout}">Sign Out</a>
+<!--    </span>-->
+    <br><br>
+    <hr>
+    <br><br>
+</div>
+</sec:authorize>
+</body>
+</html>
