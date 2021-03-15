@@ -1,8 +1,0 @@
-{
-  "properties": [
-    {
-      "name": "daily_url",
-      "type": "java.lang.String",
-      "description": "Description for daily_url."
-  }
-] }
