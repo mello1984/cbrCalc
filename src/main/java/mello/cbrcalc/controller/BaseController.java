@@ -1,6 +1,5 @@
 package mello.cbrcalc.controller;
 
-import mello.cbrcalc.entity.User;
 import mello.cbrcalc.entity.ValCodeDaily;
 import mello.cbrcalc.service.ServiceDAO;
 import mello.cbrcalc.web.ExchangeTransaction;
@@ -11,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -22,7 +20,7 @@ public class BaseController {
 
     @GetMapping("/")
     public String indexPage(Model model) {
-        return "index";
+        return "index.html";
     }
 
 
@@ -44,7 +42,7 @@ public class BaseController {
         ExchangeTransaction exchangeTransaction = new ExchangeTransaction();
         model.addAttribute(exchangeTransaction);
 
-        return "exchange2";
+        return "exchange";
     }
 
     @GetMapping("/admin")

@@ -1,17 +1,28 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>Login page</title>
     <link th:href="@{/css/main.css}" rel="stylesheet">
-    <script type="text/javascript" th:src="@{/js/showAlert.js}"></script>
 </head>
+
 <body>
+
+<div th:replace="fragments/header :: header"></div>
+
 <h1>Please login</h1>
 <form action="/login" method="post">
     <input type="text" name="username" id="username" placeholder="UserName" required="true" autofocus="true"><br>
     <input type="password" name="password" id="password" placeholder="Password" required="true"><br>
     <button type="submit">Sign in</button>
 </form>
+
+<div th:if="!${#request.userPrincipal}">
+    <!--    Text visible to anonimous.-->
+    <br>
+    <p>Registration form: <a href="/admin">link</a></p>
+</div>
 </body>
 </html>

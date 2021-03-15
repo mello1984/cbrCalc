@@ -1,28 +1,35 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.springframework.org/security/tags"
-      lang="en">
-<!--      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"-->
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>Main page</title>
     <link th:href="@{/css/main.css}" rel="stylesheet">
-<!--    <div th:replace="fragments/header :: header-css"/>-->
+    <!--    <div th:replace="fragments/header :: header-css"/>-->
 </head>
+
 <body>
 
-<div th:replace="fragments/header :: header"/>
+<div th:replace="fragments/header :: header"></div>
 
-<sec:authorize access="isAnonimous()">
-    <p>Пожалуйста авторизуйтесь</p>
-</sec:authorize>
+<div th:if="!${#request.userPrincipal}">
+    <!--    Text visible to anonimous.-->
+    <p>You need to login: <a href="/admin">Sign in</a></p>
+</div>
 
-<sec:authorize access="isAuthenticated()">
+<div sec:authorize="hasRole('USER')">
+    <!--    Text visible to user.-->
     <p>Справочник по кодам валют: <a href="/val_code">перейти</a></p>
     <p>Exchange page: <a href="/exchange">перейти</a></p>
     <p>Update db page: <a href="/admin">перейти</a></p>
-    </div>
-</sec:authorize>
+</div>
+<div sec:authorize="hasRole('ADMIN')">Text visible to admin.</div>
 
 </body>
 </html>
+
+
+<!--<div th:if="!${#request.userPrincipal}"> Text visible to anonimous.</div>-->
+<!--<div sec:authorize="hasRole('USER')">Text visible to user.</div>-->
+<!--<div sec:authorize="hasRole('ADMIN')">Text visible to admin.</div>-->

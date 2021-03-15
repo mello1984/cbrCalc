@@ -22,16 +22,6 @@ public class SecurityController {
         return "/login";
     }
 
-//    @GetMapping("/login")
-//    public String login(Model model) {
-//        User user = new User();
-//        model.addAttribute("user", user);
-//        return "/login";
-//    }
-
-//    @PostMapping("/login")
-//    public String
-
     @GetMapping("/registration")
     public String registration(Model model) {
         model.addAttribute("userForm", new User());
