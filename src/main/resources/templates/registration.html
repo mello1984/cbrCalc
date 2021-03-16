@@ -8,11 +8,46 @@
 <p>Index page: <a href="/">перейти</a></p>
 
 <div>
-    <form action="#" th:action="@{/registration}" method="post" th:object="${userForm}">
+    <form id="userForm" action="#" th:action="@{/registration}" method="post" th:object="${userForm}">
         <label>Username: </label><input type="text" th:field="*{username}"><br>
+        <ul>
+            <li th:each="err : ${#fields.errors('username')}" th:text="${err}"/>
+        </ul>
+        <label>First name: </label><input type="text" th:field="*{firstName}"><br>
+        <ul>
+            <li th:each="err : ${#fields.errors('firstName')}" th:text="${err}"/>
+        </ul>
+        <label>Last name: </label><input type="text" th:field="*{lastName}"><br>
+        <ul>
+            <li th:each="err : ${#fields.errors('lastName')}" th:text="${err}"/>
+        </ul>
+        <label>E-mail: </label><input type="text" th:field="*{email}"><br>
+        <ul>
+            <li th:each="err : ${#fields.errors('email')}" th:text="${err}"/>
+        </ul>
         <label>Password: </label><input type="password" th:field="*{password}"><br>
+        <ul>
+            <li th:each="err : ${#fields.errors('password')}" th:text="${err}"/>
+        </ul>
         <label>Password confirm: </label><input type="password" th:field="*{passwordConfirm}">
+        <ul>
+            <li th:each="err : ${#fields.errors('passwordConfirm')}" th:text="${err}"/>
+        </ul>
+
+        <ul>
+            <li th:if="${password_error!=null}"><span th:text="${password_error}"></span></li>
+            <li th:if="${username_error!=null}"><span th:text="${password_error}"></span></li>
+        </ul>
+
         <button type="submit">Зарегистрироваться</button>
+
+        <!--        <ul>-->
+        <!--            <li th:each="e : ${#fields.detailedErrors()}" th:class="${e.global}? globalerr : fielderr">-->
+        <!--                <span th:text="${e.global}? '*' : ${e.fieldName}"/> :-->
+        <!--                <span th:text="${e.message}"/>-->
+        <!--            </li>-->
+        <!--        </ul>-->
+
     </form>
 </div>
 
