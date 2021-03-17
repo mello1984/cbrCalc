@@ -1,0 +1,22 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+
+<!--<head>-->
+<!--    <div th:fragment="header-css">-->
+<!--        <link th:href="@{/css/main.css}" rel="stylesheet">-->
+<!--    </div>-->
+<!--</head>-->
+
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+
+<div th:fragment="header">
+    <a th:href="@{/}">Home</a> |
+    Logged user: <span sec:authentication="name"></span>
+    <span th:if="${#request.userPrincipal}"> | <a th:href="@{/logout}">Sign Out</a></span>
+    <br><br>
+    <hr>
+</div>
+</body>
+</html>

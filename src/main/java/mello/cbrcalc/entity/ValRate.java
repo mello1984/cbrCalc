@@ -1,18 +1,24 @@
 package mello.cbrcalc.entity;
 
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "valuta_rates")
-@XmlType(name = "ValRate")
-@Getter
 @IdClass(ValRatePK.class)
+@XmlType(name = "ValRate")
+@XmlAccessorType(XmlAccessType.NONE)
+@Getter
+@Setter
+@ToString
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class ValRate {
     @Id
     @Column(name = "val_id")
@@ -35,13 +41,12 @@ public class ValRate {
     @XmlElement(name = "Nominal")
     public int nominal;
 
-    @Column(name="name")
+    @Column(name = "name")
     @XmlElement(name = "Name")
     String name;
 
     @XmlElement(name = "Value")
     String value;
-
 
     @Column(name = "val")
     double val;

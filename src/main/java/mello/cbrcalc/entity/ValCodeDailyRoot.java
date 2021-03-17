@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @XmlRootElement(name = "Valuta")
-public class ValCodeRoot {
+public class ValCodeDailyRoot {
    @XmlElement(name = "Item")
-   public List<ValCode> list = new ArrayList<>();
+   public List<ValCodeDaily> list = new ArrayList<>();
 }
 

@@ -1,18 +1,29 @@
 package mello.cbrcalc.service;
 
-import mello.cbrcalc.entity.ValCode;
+import mello.cbrcalc.entity.ValCodeDaily;
 import mello.cbrcalc.entity.ValRate;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface ServiceDAO {
+    void saveOrUpdateValCodeDaily(ValCodeDaily v);
+
     void saveOrUpdateValRate(ValRate valRate);
 
-    ValCode findValutaById(String id);
+    ValCodeDaily findValCodeDailyById(String id);
 
-    List<ValCode> getValutaCodes();
+    List<ValCodeDaily> getValCodeDailys();
 
-    void saveOrUpdateValCode(ValCode valuta);
 
     ValRate findValRateById(String id);
+
+    boolean updateRateDB();
+
+
+    boolean updateCodeDailyDB();
+
+    List<String> getCharCodeList();
+
+    LocalDate getMaxDate();
 }
