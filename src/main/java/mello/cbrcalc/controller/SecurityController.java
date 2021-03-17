@@ -1,5 +1,6 @@
 package mello.cbrcalc.controller;
 
+import mello.cbrcalc.aop.LogExecutionMethod;
 import mello.cbrcalc.entity.User;
 import mello.cbrcalc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ public class SecurityController {
     @Autowired
     UserService userService;
 
+    @LogExecutionMethod
     @GetMapping("/login")
     public String login() {
         return "/login";

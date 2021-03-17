@@ -52,7 +52,7 @@ public class BaseController {
 
 
     @PostMapping("/exchangeCurrency")
-    public String exchangeValuta(@ModelAttribute ExchangeTransaction et, Model model) {
+    public String exchangeCurrency(@ModelAttribute ExchangeTransaction et, Model model) {
 
         ValRate valRateFrom = service.findValRateById(et.getCurrencyFrom());
         ValRate valRateTo = service.findValRateById(et.getCurrencyTo());

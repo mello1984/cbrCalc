@@ -1,21 +1,18 @@
 package mello.cbrcalc;
 
-import lombok.extern.slf4j.Slf4j;
-import mello.cbrcalc.dao.RoleRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 
 @SpringBootApplication(scanBasePackages = "mello.cbrcalc")
-@Slf4j
 @EnableWebMvc
+@EnableAspectJAutoProxy
 public class CbrCalcSpringMvcApplication implements WebMvcConfigurer {
     public static void main(String[] args) {
-
         SpringApplication.run(CbrCalcSpringMvcApplication.class, args);
     }
 
