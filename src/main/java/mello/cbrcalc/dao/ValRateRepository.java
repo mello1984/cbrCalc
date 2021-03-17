@@ -16,6 +16,9 @@ public interface ValRateRepository extends JpaRepository<ValRate, ValRatePK> {
 
     ValRate findFirstByCharCodeOrderByDateDesc(String charCode);
 
-    @Query("SELECT DISTINCT charCode FROM ValRate  ORDER BY charCode")
+    @Query("SELECT DISTINCT charCode FROM ValRate ORDER BY charCode")
     List<String> getCharCodeList();
+
+    @Query("SELECT MAX(date) FROM ValRate")
+    LocalDate getMaxDate();
 }

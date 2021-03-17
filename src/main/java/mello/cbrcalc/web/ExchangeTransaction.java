@@ -10,6 +10,7 @@ import mello.cbrcalc.entity.ValRate;
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ExchangeTransaction {
+    int userId;
     String currencyFrom;
     String currencyTo;
     double amountFrom;

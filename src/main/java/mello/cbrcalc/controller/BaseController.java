@@ -1,5 +1,6 @@
 package mello.cbrcalc.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import mello.cbrcalc.entity.ValCodeDaily;
 import mello.cbrcalc.service.ServiceDAO;
 import mello.cbrcalc.web.ExchangeTransaction;
@@ -11,9 +12,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
+@Slf4j
 public class BaseController {
     @Autowired
     ServiceDAO service;
@@ -24,8 +27,7 @@ public class BaseController {
     }
 
 
-
-     @GetMapping("/val_code")
+    @GetMapping("/val_code")
     public String valCodePage(Model model) {
         List<ValCodeDaily> valCodeList = service.getValCodeDailys();
         model.addAttribute("valCodeList", valCodeList);
@@ -52,7 +54,13 @@ public class BaseController {
 
 
     @PostMapping("/exchangeCurrency")
-    public String exchangeValuta(@ModelAttribute ExchangeTransaction et, Model model) {
+    public String exchangeCurrency(@ModelAttribute ExchangeTransaction et, Model model) {
+        LocalDate maxDbDate = service.getMaxDate();
+//        log.warn(">>>>>>>>>>>>>>>>>>> exchangeCurrency >>>>>>>>>>>>>>>>>>>");
+        if (maxDbDate.isBefore(LocalDate.now())) {
+            service.updateRateDB();
+            System.out.println("SERVICE: try to update rates");
+        }
 
         ValRate valRateFrom = service.findValRateById(et.getCurrencyFrom());
         ValRate valRateTo = service.findValRateById(et.getCurrencyTo());

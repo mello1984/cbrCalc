@@ -55,13 +55,13 @@ public class ServiceDAOImpl implements ServiceDAO {
     public ValRate findValRateById(String id) {
 //        ValRate result = valRateRepository.findFirstByValutaIdOrderByDateDesc(id);
         ValRate result = valRateRepository.findFirstByCharCodeOrderByDateDesc(id);
-        System.out.println("findValRateById: " + result);
-        if (result.getDate() != LocalDate.now()) {
-            updateRateDB();
-            System.out.println("SERVICE: try to update rates");
+//        System.out.println("findValRateById: " + result);
+//        if (result.getDate() != LocalDate.now()) {
+//            updateRateDB();
+//            System.out.println("SERVICE: try to update rates");
 //            result = valRateRepository.findFirstByValutaIdOrderByDateDesc(id);
-            result = valRateRepository.findFirstByCharCodeOrderByDateDesc(id);
-        }
+//            result = valRateRepository.findFirstByCharCodeOrderByDateDesc(id);
+//        }
         return result;
     }
 
@@ -102,4 +102,8 @@ public class ServiceDAOImpl implements ServiceDAO {
         return valRateRepository.getCharCodeList();
     }
 
+    @Override
+    public LocalDate getMaxDate() {
+        return valRateRepository.getMaxDate();
+    }
 }
