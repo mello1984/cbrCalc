@@ -15,11 +15,9 @@ public interface ServiceDAO {
 
     List<ValCodeDaily> getValCodeDailys();
 
-
     ValRate findValRateById(String id);
 
     boolean updateRateDB();
-
 
     boolean updateCodeDailyDB();
 

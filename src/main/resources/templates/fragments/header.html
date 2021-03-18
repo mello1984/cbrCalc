@@ -14,6 +14,8 @@
 <div th:fragment="header">
     <a th:href="@{/}">Home</a> |
     Logged user: <span sec:authentication="name"></span>
+    <span th:if="${#request.userPrincipal}"> | <a th:href="@{/profile}">Profile</a></span>
+    <span th:if="${#request.userPrincipal}"> | <a th:href="@{/history}">Operations history</a></span>
     <span th:if="${#request.userPrincipal}"> | <a th:href="@{/logout}">Sign Out</a></span>
     <br><br>
     <hr>

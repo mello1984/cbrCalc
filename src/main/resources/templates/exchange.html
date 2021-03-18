@@ -20,9 +20,11 @@
     <br><br>
 
     <label>
-        <input type="text" th:field ="*{amountFrom}">
+        <input type="text" th:field="*{amountFrom}">
     </label>
-    <br><br>
+    <ul>
+        <li th:each="err : ${#fields.errors('amountFrom')}" th:text="${err}"/>
+    </ul>
 
     <label>
         <select th:field="*{currencyTo}">
