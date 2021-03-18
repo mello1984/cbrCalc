@@ -5,7 +5,6 @@ import mello.cbrcalc.entity.LoggingType;
 import mello.cbrcalc.entity.ValCodeDaily;
 import mello.cbrcalc.service.LoggingService;
 import mello.cbrcalc.service.ServiceDAO;
-import mello.cbrcalc.service.UserService;
 import mello.cbrcalc.web.ExchangeTransaction;
 import mello.cbrcalc.entity.ValRate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,17 +26,15 @@ public class MainController {
     @Autowired
     ServiceDAO service;
     @Autowired
-    UserService userService;
-    @Autowired
     LoggingService loggingService;
 
     @GetMapping("/")
-    public String indexPage(Model model) {
+    public String indexPage() {
         return "index.html";
     }
 
     @GetMapping("/admin/admin")
-    public String adminPage(Model model) {
+    public String adminPage() {
         return "/admin/admin";
     }
 

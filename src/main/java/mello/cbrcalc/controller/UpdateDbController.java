@@ -10,18 +10,17 @@ import org.springframework.web.client.RestTemplate;
 public class UpdateDbController {
     @Autowired
     private ServiceDAO service;
-
     @Autowired
     private RestTemplate restTemplate;
 
-    @PostMapping("/updateCurrencyDailyDataBase")
+    @PostMapping("/admin/updateCurrencyDailyDataBase")
     public String updateDailyRateCodeDB() {
 
         boolean result = service.updateCodeDailyDB();
         return result ? "Update successful" : "Update failed";
     }
 
-    @PostMapping("/updateRateDataBase")
+    @PostMapping("/admin/updateRateDataBase")
     public String updateRateDB() {
         boolean result = service.updateRateDB();
         return result ? "Update successful" : "Update failed";

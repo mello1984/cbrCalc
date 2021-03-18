@@ -8,6 +8,6 @@ import java.util.List;
 public interface LoggingService {
    void saveLoggingEvent(LoggingEvent event);
    List<LoggingEvent> findAllByUsernameOrderByLocalDateTimeDesc(String userName);
-   List<LoggingEvent> findAllByUsernameAndLoggingTypeOrderByLocalDateTimeDesc(String userName, LoggingType loggingType);
    List<LoggingEvent> findAllByLoggingTypeOrderByLocalDateTimeDesc(LoggingType loggingType);
+   List<LoggingEvent> findAllByUsernameAndLoggingTypeOrderByLocalDateTimeDesc(String userName, LoggingType loggingType);
 }

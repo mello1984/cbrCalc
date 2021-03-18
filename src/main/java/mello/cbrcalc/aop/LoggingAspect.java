@@ -42,10 +42,10 @@ public class LoggingAspect {
 
     @After("execution(* exchangeCurrency(..))")
     public void afterExchangeAdvice(JoinPoint jp) {
-        Object[] arguments = jp.getArgs();
         String event = null;
         String userName = SecurityContextHolder.getContext().getAuthentication().getName();
 
+        Object[] arguments = jp.getArgs();
         for (Object o : arguments) {
             if (o instanceof ExchangeTransaction) {
                 ExchangeTransaction et = (ExchangeTransaction) o;
@@ -53,6 +53,7 @@ public class LoggingAspect {
                         et.getCurrencyFrom(), et.getCurrencyTo(), et.getAmountFrom(), et.getAmountTo());
             }
         }
+
         LoggingEvent loggingEvent = new LoggingEvent(LocalDateTime.now(), LoggingType.EXCHANGECURRENCY, userName, event);
         loggingService.saveLoggingEvent(loggingEvent);
     }
