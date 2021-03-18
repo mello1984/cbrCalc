@@ -23,18 +23,11 @@ public class UserService implements UserDetailsService {
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
 
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username);
         if (user == null) throw new UsernameNotFoundException(String.format("User '%s' not found", username));
         return user;
-    }
-
-    public User findUserById(int id) {
-        return userRepository.findById(id).get();
-//        Optional<User> userFromDb = userRepository.findById(id);
-//        return userFromDb.orElse(new User());
     }
 
     public User findUserByUserName(String name) {
