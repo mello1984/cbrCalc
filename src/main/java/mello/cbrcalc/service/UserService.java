@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -33,8 +32,13 @@ public class UserService implements UserDetailsService {
     }
 
     public User findUserById(int id) {
-        Optional<User> userFromDb = userRepository.findById(id);
-        return userFromDb.orElse(new User());
+        return userRepository.findById(id).get();
+//        Optional<User> userFromDb = userRepository.findById(id);
+//        return userFromDb.orElse(new User());
+    }
+
+    public User findUserByUserName(String name) {
+        return userRepository.findByUsername(name);
     }
 
     public List<User> allUsers() {
@@ -47,6 +51,11 @@ public class UserService implements UserDetailsService {
 
         user.setRoles(Collections.singleton(new Role(1, "ROLE_USER")));
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        userRepository.save(user);
+        return true;
+    }
+
+    public boolean updateUser(User user) {
         userRepository.save(user);
         return true;
     }

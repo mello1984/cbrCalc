@@ -4,6 +4,9 @@ import mello.cbrcalc.aop.LogExecutionMethod;
 import mello.cbrcalc.entity.User;
 import mello.cbrcalc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,6 +20,8 @@ import javax.validation.Valid;
 public class SecurityController {
     @Autowired
     UserService userService;
+    @Autowired
+    BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @LogExecutionMethod
     @GetMapping("/login")
@@ -34,14 +39,48 @@ public class SecurityController {
     public String addUser(@ModelAttribute("userForm") @Valid User user, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) return "registration";
         if (!user.getPassword().equals(user.getPasswordConfirm())) {
-            model.addAttribute("password_error", "Пароли не совпадают");
+            model.addAttribute("password_error", "Passwords don't match");
             return "registration";
         }
         if (!userService.saveUser(user)) {
-            model.addAttribute("username_error", "Пользователь с таким именем уже существует");
+            model.addAttribute("username_error", "User with this username already exists");
             return "registration";
         }
         return "redirect:/";
+    }
+
+    @GetMapping("profile")
+    public String updateUserProfile(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String userName = auth.getName();
+        User user = userService.findUserByUserName(userName);
+        model.addAttribute("userForm", user);
+        System.out.println(user);
+        return "user_profile";
+    }
+
+    @PostMapping("/profile")
+    public String changeUser(@ModelAttribute("userForm") @Valid User user, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) return "user_profile";
+        if (!user.getPassword().equals(user.getPasswordConfirm())) {
+            model.addAttribute("password_error", "Passwords don't match");
+            return "user_profile";
+        }
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String userName = auth.getName();
+        User userFromDb = userService.findUserByUserName(userName);
+
+        userFromDb.setFirstName(user.getFirstName());
+        userFromDb.setLastName(user.getLastName());
+        userFromDb.setEmail(user.getEmail());
+        userFromDb.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        userFromDb.setPasswordConfirm(bCryptPasswordEncoder.encode(user.getPasswordConfirm()));
+
+        System.out.println("changeUser end: " + user);
+        userService.updateUser(userFromDb);
+        model.addAttribute("update_result",true);
+        return "user_profile";
     }
 
 }
