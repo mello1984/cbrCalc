@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
-@RequiredArgsConstructor
 @Table(name = "t_log")
 public class LoggingEvent {
     @Id
@@ -19,12 +18,22 @@ public class LoggingEvent {
     @Column(name = "id")
     int id;
 
-    @NonNull
     @Column(name = "date")
     LocalDateTime localDateTime;
 
-    @NonNull
+    @Column(name = "type")
+    LoggingType loggingType;
+
+    @Column(name = "user_name")
+    String username;
+
     @Column(name = "event")
     String event;
 
+    public LoggingEvent(LocalDateTime localDateTime, LoggingType loggingType, String username, String event) {
+        this.localDateTime = localDateTime;
+        this.loggingType = loggingType;
+        this.username = username;
+        this.event = event;
+    }
 }

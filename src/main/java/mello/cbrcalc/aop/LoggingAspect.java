@@ -2,6 +2,7 @@ package mello.cbrcalc.aop;
 
 import lombok.extern.slf4j.Slf4j;
 import mello.cbrcalc.entity.LoggingEvent;
+import mello.cbrcalc.entity.LoggingType;
 import mello.cbrcalc.service.LoggingService;
 import mello.cbrcalc.web.ExchangeTransaction;
 import org.aspectj.lang.JoinPoint;
@@ -34,32 +35,27 @@ public class LoggingAspect {
     public void afterDbUpdate(JoinPoint jp) {
         String userName = SecurityContextHolder.getContext().getAuthentication().getName();
         MethodSignature methodSignature = (MethodSignature) jp.getSignature();
-        String event = String.format("User: %s, method: %s", userName, methodSignature.getName());
-        loggingService.saveLoggingEvent(new LoggingEvent(LocalDateTime.now(), event));
+        String event = String.format("Method: %s", methodSignature.getName());
+        LoggingEvent loggingEvent = new LoggingEvent(LocalDateTime.now(), LoggingType.OTHER, userName, event);
+        loggingService.saveLoggingEvent(loggingEvent);
     }
 
     @After("execution(* exchangeCurrency(..))")
-    public void beforeExchangeAdvice(JoinPoint jp) {
+    public void afterExchangeAdvice(JoinPoint jp) {
         Object[] arguments = jp.getArgs();
-        String etData = null;
+        String event = null;
         String userName = SecurityContextHolder.getContext().getAuthentication().getName();
 
         for (Object o : arguments) {
             if (o instanceof ExchangeTransaction) {
                 ExchangeTransaction et = (ExchangeTransaction) o;
-                etData = String.format("User: %s, from: %s, to: %s, amount from: %s, amount to: %s",
-                        userName, et.getCurrencyFrom(), et.getCurrencyTo(), et.getAmountFrom(), et.getAmountTo());
+                event = String.format("From: %s, to: %s, amount from: %s, amount to: %s",
+                        et.getCurrencyFrom(), et.getCurrencyTo(), et.getAmountFrom(), et.getAmountTo());
             }
         }
-        loggingService.saveLoggingEvent(new LoggingEvent(LocalDateTime.now(), etData));
+        LoggingEvent loggingEvent = new LoggingEvent(LocalDateTime.now(), LoggingType.EXCHANGECURRENCY, userName, event);
+        loggingService.saveLoggingEvent(loggingEvent);
     }
 }
-
-//    @Before("logExecutionMethod()")
-//    public void beforeExecutionMethod() {
-//        System.out.println(">>>>>>>>>>>>>>>>>>> beforeExecutionMethod >>>>>>>>>>>>>>>>>>>");
-//        log.warn(">>>>>>>>>>>>>>>>>>> beforeExecutionMethod >>>>>>>>>>>>>>>>>>>");
-//    }
-//
 
 

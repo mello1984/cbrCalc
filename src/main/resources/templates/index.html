@@ -15,16 +15,18 @@
 
 <div th:if="!${#request.userPrincipal}">
     <!--    Text visible to anonimous.-->
-    <p>You need to login: <a href="/admin">Sign in</a></p>
+    <p>You need to login: <a href="/login">Sign in</a></p>
 </div>
 
 <div sec:authorize="hasRole('USER')">
     <!--    Text visible to user.-->
     <p>Справочник по кодам валют: <a href="/val_code">перейти</a></p>
     <p>Exchange page: <a href="/exchange">перейти</a></p>
-    <p>Update db page: <a href="/admin">перейти</a></p>
 </div>
-<div sec:authorize="hasRole('ADMIN')">Text visible to admin.</div>
+<div sec:authorize="hasRole('ADMIN')">
+    <!--    Text visible to admin.-->
+    <p>Admin page: <a href="/admin/admin">перейти</a></p>
+</div>
 
 </body>
 </html>
