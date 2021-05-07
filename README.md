@@ -1,5 +1,15 @@
-Simple model of currency exchange system on Spring Boot.
-Currency data gets from site Central Bank of Russia http://www.cbr.ru/scripts/XML_daily.asp
-Spring MVC used for web, views on Thymeleaf.
-Spring Security for database authentification.
-Spring AoP for logging transactions.
+Веб-приложение (MVC), модель системы обмена валют. Данные по текущим курсам валют импортируются в формате JSON с сайта
+Центрального банка России http://www.cbr.ru/scripts/XML_daily.asp Аутентификация и авторизация пользователей по ролям,
+логирование операций. Данные о пользователях, истории операций, курсах валют на заданный день хранятся в БД.
+Визуализация - Thymeleaf.
+
+Стек технологий:
+
+- Java 11
+- Spring Boot
+- Spring AoP
+- Spring Security
+- Spring Data JPA
+- Thymeleaf
+- PostgreSQL
+- Gradle
